@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ScreenResolution : MonoBehaviour {
 
@@ -29,7 +28,7 @@ public class ScreenResolution : MonoBehaviour {
 			cameraAspect_ = designResolution.x/designResolution.y;
 			break;
 		case ResolutionPolicy.NO_BORDER:
-			if ((float)Screen.width/(float)Screen.height < designResolution.x/designResolution.y)
+			if (System.Convert.ToSingle(Screen.width)/System.Convert.ToSingle(Screen.height) < designResolution.x/designResolution.y)
 			{
 				cameraOrthographicSize_ = designResolution.y/pixelsPerUnit/2;
 			}
@@ -39,7 +38,7 @@ public class ScreenResolution : MonoBehaviour {
 			}
 			break;
 		case ResolutionPolicy.SHOW_ALL:
-			if ((float)Screen.width/(float)Screen.height < designResolution.x/designResolution.y)
+			if (System.Convert.ToSingle(Screen.width)/System.Convert.ToSingle(Screen.height) < designResolution.x/designResolution.y)
 			{
 				cameraOrthographicSize_ = designResolution.x/pixelsPerUnit/2/cameraAspect_;
 			}
