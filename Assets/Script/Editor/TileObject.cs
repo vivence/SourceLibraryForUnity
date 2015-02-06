@@ -289,7 +289,7 @@ namespace Ghost.EditorTool
 				var i = tiledCount;
 				
 				var gameObject = GameObject.Instantiate(prefabs[randomPrefab_ ? Random.Range(0, prefabs.Length) : i%prefabs.Length]) as GameObject;
-				gameObject.name = string.Format("part_{0}", i);
+				gameObject.name = string.Format("{0}_{1}", i, gameObject.name);
 				gameObject.transform.parent = layer.transform;
 				
 				tiledSize += PlacePart(gameObject, prevPart);
