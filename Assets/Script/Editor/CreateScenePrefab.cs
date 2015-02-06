@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Ghost.Config;
 
-namespace Ghost.Editor
+namespace Ghost.EditorTool
 {
 	public class CreateScenePrefab {
 		

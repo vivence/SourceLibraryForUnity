@@ -4,7 +4,7 @@ using System.Collections;
 using System.Reflection;
 using Ghost.Attribute;
 
-namespace Ghost.Editor
+namespace Ghost.EditorTool
 {
 	[CustomPropertyDrawer(typeof(SetPropertyAttribute))]
 	public class SetPropertyDrawer : PropertyDrawer

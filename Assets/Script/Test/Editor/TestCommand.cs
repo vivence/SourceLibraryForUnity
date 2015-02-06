@@ -6,7 +6,7 @@ using System.Xml;
 using Ghost.Utils;
 using Ghost.Extensions;
 
-namespace Ghost.Editor
+namespace Ghost.EditorTool
 {
 	public static class TestCommand{
 
