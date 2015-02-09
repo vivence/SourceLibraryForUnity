@@ -149,7 +149,7 @@ namespace Ghost.EditorTool
 				case Mode.CLOSELY_SPACED:
 					if (1 == prefabs.Count)
 					{
-						flip_ = EditorGUILayout.Toggle("Flip", flip_);
+						flip_ = EditorGUILayout.ToggleLeft("Flip", flip_);
 					}
 					break;
 				case Mode.RANDOM_GAP:
