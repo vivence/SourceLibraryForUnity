@@ -24,4 +24,4 @@ namespace Ghost.EditorTool
 		}
 
 	}
-}
+} // namespace Ghost.EditorTool

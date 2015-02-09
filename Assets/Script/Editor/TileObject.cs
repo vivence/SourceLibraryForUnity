@@ -98,7 +98,7 @@ namespace Ghost.EditorTool
 
 		}
 		
-		private bool foldout_ = true;
+		private bool foldout_ = false;
 		
 		private string name_ = "TiledLayer";
 		private Mode mode_ = Mode.CLOSELY_SPACED;
