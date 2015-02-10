@@ -109,28 +109,12 @@ namespace Ghost.Resolution
 
 		private float TrimZoomLimitValue(float value)
 		{
-			if (ZOOM_MIN_LIMIT > value)
-			{
-				return ZOOM_MIN_LIMIT;
-			}
-			else if (ZOOM_MAX_LIMIT < value)
-			{
-				return ZOOM_MAX_LIMIT;
-			}
-			return value;
+			return Mathf.Clamp(value, ZOOM_MIN_LIMIT, ZOOM_MAX_LIMIT);
 		}
 
 		private float TrimZoomValue(float value)
 		{
-			if (zoomMin > value)
-			{
-				return zoomMin;
-			}
-			else if (zoomMax < value)
-			{
-				return zoomMax;
-			}
-			return value;
+			return Mathf.Clamp(value, zoomMin, zoomMax);
 		}
 
 		private void ResetView(Camera camera)

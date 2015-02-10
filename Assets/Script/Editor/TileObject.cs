@@ -6,8 +6,7 @@ using Ghost.Extensions;
 
 namespace Ghost.EditorTool
 {
-	[CustomEditor(typeof(Transform), true), CanEditMultipleObjects]
-	public class TileObjectEditor : Editor {
+	public class TileObject : GhostEditorWindowItem {
 		
 		public enum Mode{
 			CLOSELY_SPACED,
@@ -98,8 +97,6 @@ namespace Ghost.EditorTool
 
 		}
 		
-		private bool foldout_ = false;
-		
 		private string name_ = "TiledLayer";
 		private Mode mode_ = Mode.CLOSELY_SPACED;
 		private Vector2 gapMin_ = Vector2.zero;
@@ -112,11 +109,14 @@ namespace Ghost.EditorTool
 		private bool randomPrefab_ = false;
 		
 		private Vector2 basePosition_ = Vector2.zero;
-		
-		public override void OnInspectorGUI ()
+
+		public TileObject()
+			: base("Tile Object")
 		{
-			base.OnInspectorGUI();
-			
+		}
+		
+		public override void OnGUI ()
+		{
 			var objs = Selection.GetFiltered(typeof(GameObject), SelectionMode.Assets);
 			if (objs.IsNullOrEmpty())
 			{
@@ -139,62 +139,58 @@ namespace Ghost.EditorTool
 				return;
 			}
 			
-			foldout_ = EditorGUILayout.Foldout(foldout_, "TileObject");
-			if (foldout_)
+			name_ = EditorGUILayout.TextField("Name", name_);
+			mode_ = (Mode)EditorGUILayout.EnumPopup("Mode", mode_);
+			switch (mode_)
 			{
-				name_ = EditorGUILayout.TextField("Name", name_);
-				mode_ = (Mode)EditorGUILayout.EnumPopup("Mode", mode_);
-				switch (mode_)
+			case Mode.CLOSELY_SPACED:
+				if (1 == prefabs.Count)
 				{
-				case Mode.CLOSELY_SPACED:
-					if (1 == prefabs.Count)
-					{
-						flip_ = EditorGUILayout.ToggleLeft("Flip", flip_);
-					}
+					flip_ = EditorGUILayout.ToggleLeft("Flip", flip_);
+				}
+				break;
+			case Mode.RANDOM_GAP:
+				flip_ = false;
+				gapMin_ = EditorGUILayout.Vector2Field("GapMin", gapMin_);
+				gapMax_ = EditorGUILayout.Vector2Field("GapMax", gapMax_);
+				break;
+			default:
+				flip_ = false;
+				break;
+			}
+			direction_ = (Direction)EditorGUILayout.EnumPopup("Direction", direction_);
+			baseOn_ = (BaseOn)EditorGUILayout.EnumPopup("BaseOn", baseOn_);
+			
+			switch (baseOn_)
+			{
+			case BaseOn.SIZE:
+				switch (direction_)
+				{
+				case Direction.HORIZONTAL:
+					size_ = EditorGUILayout.FloatField("width", size_);
 					break;
-				case Mode.RANDOM_GAP:
-					flip_ = false;
-					gapMin_ = EditorGUILayout.Vector2Field("GapMin", gapMin_);
-					gapMax_ = EditorGUILayout.Vector2Field("GapMax", gapMax_);
-					break;
-				default:
-					flip_ = false;
+				case Direction.VERTICAL:
+					size_ = EditorGUILayout.FloatField("height", size_);
 					break;
 				}
-				direction_ = (Direction)EditorGUILayout.EnumPopup("Direction", direction_);
-				baseOn_ = (BaseOn)EditorGUILayout.EnumPopup("BaseOn", baseOn_);
-				
-				switch (baseOn_)
+				break;
+			case BaseOn.AMOUNT:
+				if (0 > count_)
 				{
-				case BaseOn.SIZE:
-					switch (direction_)
-					{
-					case Direction.HORIZONTAL:
-						size_ = EditorGUILayout.FloatField("width", size_);
-						break;
-					case Direction.VERTICAL:
-						size_ = EditorGUILayout.FloatField("height", size_);
-						break;
-					}
-					break;
-				case BaseOn.AMOUNT:
-					if (0 > count_)
-					{
-						count_ = 0;
-					}
-					count_ = EditorGUILayout.IntField("count", count_);
-					break;
+					count_ = 0;
 				}
-				
-				if (1 < prefabs.Count)
-				{
-					randomPrefab_ = EditorGUILayout.ToggleLeft("Random", randomPrefab_);
-				}
-				
-				if (GUILayout.Button("Create New"))
-				{
-					CreateNew(prefabs.ToArray());
-				}
+				count_ = EditorGUILayout.IntField("count", count_);
+				break;
+			}
+			
+			if (1 < prefabs.Count)
+			{
+				randomPrefab_ = EditorGUILayout.ToggleLeft("Random", randomPrefab_);
+			}
+			
+			if (GUILayout.Button("Create New"))
+			{
+				CreateNew(prefabs.ToArray());
 			}
 		}
 
