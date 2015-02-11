@@ -6,23 +6,12 @@ namespace Ghost.Utils
 {
 	public class PathEnumerableBase : System.Collections.IEnumerable
 	{
-		private string path_;
 		
-		public string path
-		{
-			get
-			{
-				return path_;
-			}
-			set
-			{
-				path_ = value;
-			}
-		}
+		public string path {get;set;}
 		
 		public PathEnumerableBase(string p)
 		{
-			path_ = p;
+			path = p;
 		}
 
 		public System.Collections.IEnumerator GetEnumerator ()

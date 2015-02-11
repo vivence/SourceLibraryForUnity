@@ -15,7 +15,8 @@ namespace Ghost.EditorTool
 			foldout = false;
 		}
 		
-		public abstract void OnGUI();
+		public virtual void OnGUI(){}
+		public virtual void Update(){}
 		
 	}
 	
@@ -34,6 +35,7 @@ namespace Ghost.EditorTool
 			items_ = new List<GhostEditorWindowItem>();
 			items_.Add(new AlignPosition());
 			items_.Add(new TileObject());
+			items_.Add(new ScreenShot());
 		}
 		
 		public void Awake () 
@@ -59,7 +61,10 @@ namespace Ghost.EditorTool
 		//更新
 		void Update()
 		{
-			
+			foreach (var item in items_)
+			{
+				item.Update();
+			}
 		}
 		
 		// 当窗口获得焦点时调用一次

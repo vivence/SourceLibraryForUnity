@@ -54,7 +54,7 @@ namespace Ghost.EditorTool
 			switch (mode_)
 			{
 			case Mode.CAMERA_VIEW_POINT:
-				position_ = EditorGUILayout.Vector2Field("CameraViewPoint", position_);
+				position_ = EditorGUILayout.Vector2Field("Camera View Point", position_);
 				break;
 			}
 			
@@ -65,7 +65,7 @@ namespace Ghost.EditorTool
 			}
 			if (Selection.activeTransform && 1 == Selection.transforms.Length)
 			{
-				if (GUILayout.Button("GetAlign"))
+				if (GUILayout.Button("Get Align"))
 				{
 					GetAlign();
 				}

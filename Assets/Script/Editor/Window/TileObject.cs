@@ -151,15 +151,15 @@ namespace Ghost.EditorTool
 				break;
 			case Mode.RANDOM_GAP:
 				flip_ = false;
-				gapMin_ = EditorGUILayout.Vector2Field("GapMin", gapMin_);
-				gapMax_ = EditorGUILayout.Vector2Field("GapMax", gapMax_);
+				gapMin_ = EditorGUILayout.Vector2Field("Gap Min", gapMin_);
+				gapMax_ = EditorGUILayout.Vector2Field("Gap Max", gapMax_);
 				break;
 			default:
 				flip_ = false;
 				break;
 			}
 			direction_ = (Direction)EditorGUILayout.EnumPopup("Direction", direction_);
-			baseOn_ = (BaseOn)EditorGUILayout.EnumPopup("BaseOn", baseOn_);
+			baseOn_ = (BaseOn)EditorGUILayout.EnumPopup("Base On", baseOn_);
 			
 			switch (baseOn_)
 			{
@@ -167,10 +167,10 @@ namespace Ghost.EditorTool
 				switch (direction_)
 				{
 				case Direction.HORIZONTAL:
-					size_ = EditorGUILayout.FloatField("width", size_);
+					size_ = EditorGUILayout.FloatField("Width", size_);
 					break;
 				case Direction.VERTICAL:
-					size_ = EditorGUILayout.FloatField("height", size_);
+					size_ = EditorGUILayout.FloatField("Height", size_);
 					break;
 				}
 				break;
@@ -179,7 +179,7 @@ namespace Ghost.EditorTool
 				{
 					count_ = 0;
 				}
-				count_ = EditorGUILayout.IntField("count", count_);
+				count_ = EditorGUILayout.IntField("Count", count_);
 				break;
 			}
 			
