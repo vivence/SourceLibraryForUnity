@@ -111,6 +111,7 @@ namespace Ghost.EditorTool
 		private string rootFolder_ = string.Empty;
 		private string fileName_ = "ScreenShot";
 		private int FPS_ = 60;
+		private bool shortcut_ = false;
 		private string toggleKey_ = string.Empty;
 
 		private Worker worker_ = null;
@@ -143,6 +144,15 @@ namespace Ghost.EditorTool
 			if (working)
 			{
 				return;
+			}
+			if (string.IsNullOrEmpty(rootFolder_))
+			{
+				var path = EditorUtility.SaveFolderPanel("Save Screenshot", "", "");
+				if (string.IsNullOrEmpty(path))
+				{
+					return;
+				}
+				rootFolder_ = path;
 			}
 			working = true;
 		}
@@ -203,21 +213,17 @@ namespace Ghost.EditorTool
 			{
 				if (GUILayout.Button("Start"))
 				{
-					if (string.IsNullOrEmpty(rootFolder_))
-					{
-						var path = EditorUtility.SaveFolderPanel("Save Screenshot", "", "");
-						if (!string.IsNullOrEmpty(path))
-						{
-							rootFolder_ = path;
-							StartScreenShot();
-						}
-					}
-					else
-					{
-						StartScreenShot();
-					}
+					StartScreenShot();
 				}
 			}
+
+			EditorGUILayout.BeginHorizontal();
+			shortcut_ = EditorGUILayout.ToggleLeft("Use Toggle Key", shortcut_);
+			if (shortcut_)
+			{
+				toggleKey_ = EditorGUILayout.TextField(toggleKey_);
+			}
+			EditorGUILayout.EndHorizontal();
 		}
 
 		public override void Update () 
@@ -225,6 +231,10 @@ namespace Ghost.EditorTool
 			if (null != worker_)
 			{
 				worker_.Update();
+			}
+			if (shortcut_)
+			{
+				CaptureKey();
 			}
 		}
 		
