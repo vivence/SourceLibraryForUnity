@@ -93,6 +93,24 @@ namespace Ghost.EditorTool
 		
 		[MenuItem("Assets/GetInfo/DependenciesAll(Deep)")]
 		static void GetDependenciesAllDeep () { DoGetDependenciesAll (SelectionMode.DeepAssets); }
+
+		// bounds
+		private static void DoGetRendererBoundsEach (SelectionMode mode)
+		{
+			var selectedAssets = Selection.GetFiltered (typeof(Renderer), mode);
+			foreach (var obj in selectedAssets)
+			{
+				var log = new System.Text.StringBuilder();
+				log.Append(AssetDatabase.GetAssetPath(obj));
+				var renderer = obj as Renderer;
+				var bounds = renderer.bounds;
+				log.AppendFormat("\nrenderer bounds: {0}\n", bounds);
+				Debug.Log(log.ToString());
+			}
+		}
+		
+		[MenuItem("Assets/GetInfo/RendererBoundsEach")]
+		static void GetRendererBoundsEach () { DoGetRendererBoundsEach (SelectionMode.DeepAssets); }
 		
 	}
 }// namespace Ghost.Editor
