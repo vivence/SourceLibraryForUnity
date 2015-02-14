@@ -11,12 +11,14 @@ namespace Ghost.EditorTool
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
+			SetPropertyAttribute setProperty = attribute as SetPropertyAttribute;
+			label.text = setProperty.name;
+
 			// Rely on the default inspector GUI
 			EditorGUI.BeginChangeCheck ();
 			EditorGUI.PropertyField(position, property, label);
 			
 			// Update only when necessary
-			SetPropertyAttribute setProperty = attribute as SetPropertyAttribute;
 			if (EditorGUI.EndChangeCheck())
 			{
 				// When a SerializedProperty is modified the actual field does not have the current value set (i.e.  
@@ -41,6 +43,7 @@ namespace Ghost.EditorTool
 					// Use FieldInfo instead of the SerializedProperty accessors as we'd have to deal with every 
 					// SerializedPropertyType and use the correct accessor
 					pi.SetValue(parent, fieldInfo.GetValue(parent), null);
+					fieldInfo.SetValue(parent, pi.GetValue(parent, null));
 				}
 				setProperty.isDirty = false;
 			}
