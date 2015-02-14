@@ -519,7 +519,7 @@ namespace LuaInterface
 					}
 				}
 			}
-			catch (SEHException)
+			catch (ExternalException)
 			{
 				// If we are seeing a C++ exception - this must actually be for Lua's private use.  Let it handle it
 				throw;
