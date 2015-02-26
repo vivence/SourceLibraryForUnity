@@ -41,7 +41,6 @@ namespace Ghost.Game
 			{
 				v_.iValue = v;
 				Encrypt();
-				Debug.Log(string.Format("set int({0}): stored({1}, get({2}))", v, GetValueStored(v), GetValue(v)));
 			}
 
 			protected float GetValueStored(float useless)
@@ -56,7 +55,6 @@ namespace Ghost.Game
 			{
 				v_.fValue = v;
 				Encrypt();
-				Debug.Log(string.Format("set float({0}): stored({1}, get({2}))", v, GetValueStored(v), GetValue(v)));
 			}
 
 			private void Encrypt()
