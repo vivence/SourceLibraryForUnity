@@ -16,6 +16,7 @@ namespace Ghost.Config
 		public const string EXTENSION_SCENE = "unity";
 		public const string EXTENSION_PREFAB = "prefab";
 		public const string EXTENSION_ASSET_BUNDLE = "assetbundle";
+		public const string EXTENSION_SCENE_PACKAGE = "unity3d";
 
 		static PathConfig()
 		{

@@ -67,7 +67,7 @@ namespace Ghost.EditorTool
 		static void CreateEach () { DoCreateEach (SelectionMode.Assets); }
 		
 		[MenuItem("Assets/Create/ScenePrefabEach(Deep)")]
-		static void CreateDeep () { DoCreateEach (SelectionMode.DeepAssets); }
+		static void CreateEachDeep () { DoCreateEach (SelectionMode.DeepAssets); }
 		
 	}
 }// namespace Ghost.Editor
