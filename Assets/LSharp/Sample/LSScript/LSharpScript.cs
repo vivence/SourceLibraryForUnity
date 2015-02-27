@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class LSharpScript {
@@ -6,6 +7,28 @@ public class LSharpScript {
 	public LSharpScript()
 	{
 		Debug.Log("LSharpScript.constructor");
+
+		var obj = GameObject.FindWithTag("test_button");
+		if (null != obj)
+		{
+			var button = obj.GetComponent<Button>();
+			if (null != button)
+			{
+				button.onClick.AddListener(delegate {
+					Debug.Log("test_button on click");
+					this.OnTestButton();
+				});
+			}
+			else
+			{
+				Debug.Log("test_button is not a button!");
+			}
+		}
+		else
+		{
+			Debug.Log("test_button not found!");
+		}
+
 	}
 
 	public static void StaticMethod()
@@ -21,6 +44,11 @@ public class LSharpScript {
 	public void CallAPI_Test()
 	{
 		LSharpAPI.API_Test();
+	}
+
+	private void OnTestButton()
+	{
+		Debug.Log("LSharpScript.OnTestButton");
 	}
 
 }

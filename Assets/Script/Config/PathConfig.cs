@@ -41,6 +41,7 @@ namespace Ghost.Config
 			case RuntimePlatform.WindowsEditor:
 			case RuntimePlatform.WindowsPlayer:
 			case RuntimePlatform.WindowsWebPlayer:
+			case RuntimePlatform.IPhonePlayer:
 				LOCAL_URL_PREFIX = "file://";
 				break;
 			default:
