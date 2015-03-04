@@ -3,7 +3,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-using Ghost.LSharp;
+using Ghost.LSharp.Host;
 #if LS_SCRIPT_MODE
 using System.IO;
 using Ghost.Config;

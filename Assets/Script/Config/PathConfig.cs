@@ -10,11 +10,13 @@ namespace Ghost.Config
 		public static readonly string DIRECTORY_ASSETS;
 		public static readonly string DIRECTORY_STREAMING_ASSETS;
 		public static readonly string DIRECTORY_PERSISTENT_ASSETS;
+		public const string DIRECTORY_RESOURCES = "Resources";
 
 		public static readonly string LOCAL_URL_PREFIX;
 
 		public const string EXTENSION_SCENE = "unity";
 		public const string EXTENSION_PREFAB = "prefab";
+		public const string EXTENSION_FBX = "fbx";
 		public const string EXTENSION_ASSET_BUNDLE = "assetbundle";
 		public const string EXTENSION_SCENE_PACKAGE = "unity3d";
 

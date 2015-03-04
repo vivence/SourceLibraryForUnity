@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Ghost.LSharp.Script;
 
-public class LSharpScript {
+public class LSharpScript : LSharpMonoBehavior {
 
-	public LSharpScript()
+	public LSharpScript(GameObject go, string arg)
+		: base(go)
 	{
-		Debug.Log("LSharpScript.constructor");
+		Debug.Log(string.Format("LSharpScript.constructor({0})", arg));
 
 		var obj = GameObject.FindWithTag("test_button");
 		if (null != obj)

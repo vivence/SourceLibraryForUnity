@@ -94,6 +94,23 @@ namespace Ghost.EditorTool
 		[MenuItem("Assets/GetInfo/DependenciesAll(Deep)")]
 		static void GetDependenciesAllDeep () { DoGetDependenciesAll (SelectionMode.DeepAssets); }
 
+		// dependence level
+		private static void DoGetDependenceLevelEach (SelectionMode mode)
+		{
+			var selectedAssets = Selection.GetFiltered (typeof(Object), mode);
+			foreach (Object obj in selectedAssets) 
+			{
+				var path = AssetDatabase.GetAssetPath(obj);
+				Debug.Log (string.Format("{0}\ndepends level: {1}", path, AssetDependenceLevel.GetAssetLevel(obj, path)));
+			}
+		}
+
+		[MenuItem("Assets/GetInfo/DependenceLevelEach")]
+		static void GetDependenceLevelEach () { DoGetDependenceLevelEach (SelectionMode.Assets); }
+		
+		[MenuItem("Assets/GetInfo/DependenceLevelEach(Deep)")]
+		static void GetDependenceLevelEachDeep () { DoGetDependenceLevelEach (SelectionMode.DeepAssets); }
+
 		// bounds
 		private static void DoGetRendererBoundsEach (SelectionMode mode)
 		{

@@ -12,7 +12,7 @@ namespace Ghost.EditorTool
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			SetPropertyAttribute setProperty = attribute as SetPropertyAttribute;
-			label.text = setProperty.name;
+//			label.text = setProperty.name;
 
 			// Rely on the default inspector GUI
 			EditorGUI.BeginChangeCheck ();
@@ -58,9 +58,22 @@ namespace Ghost.EditorTool
 			{
 				return obj;
 			}
+			else if (3 == fields.Length)
+			{
+				if (string.Equals("Array", fields[1])
+				    && 5 < fields[2].Length
+				    && string.Equals("data[", fields[2].Substring(0, 5)))
+				{
+					return obj;
+				}
+			}
 			
 			// We may have to walk public or private fields along the chain to finding our container object, so we have to allow for both
 			FieldInfo fi = obj.GetType().GetField(fields[0], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			if (null == fi)
+			{
+				return obj;
+			}
 			obj = fi.GetValue(obj);
 
 			// Keep searching for our object that contains the property

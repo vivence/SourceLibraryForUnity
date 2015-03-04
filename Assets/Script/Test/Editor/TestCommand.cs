@@ -44,5 +44,12 @@ namespace Ghost.EditorTool
 			Debug.Log(list.DumpString());
 		}
 
+		[MenuItem("Test/Command/StringSplitDigit")]
+		public static void StringSplitDigit()
+		{
+			var str = "1.2_3(4)5";
+			Debug.Log(string.Format("{0} ==> {1}", str, str.SplitDigit().DumpString()));
+		}
+
 	}
 } // namespace Ghost.Editor
