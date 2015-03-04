@@ -61,7 +61,7 @@ namespace Ghost.EditorTool
 					return LEVEL_MAX;
 				}
 			}
-			Debug.LogWarning(string.Format("{0}\nis not a folder or file\n"));
+			Debug.LogError(string.Format("{0}({1})\n asset type is not supported\n", assetPath, assetType));
 			return -1;
 		}
 
